@@ -142,7 +142,7 @@ Sec-WebSocket-Accept: hash
 
 ## 仕様書
 
-{{specifications}}
+{{Specifications}}
 
 ## 関連情報
 

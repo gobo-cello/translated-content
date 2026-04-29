@@ -113,7 +113,7 @@ lots of text…
 
 ## ブラウザーの互換性
 
-{{compat}}
+{{Compat}}
 
 ## 関連情報
 

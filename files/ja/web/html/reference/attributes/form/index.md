@@ -127,7 +127,7 @@ Hello, World!</textarea
 
 ## ブラウザーの互換性
 
-{{compat}}
+{{Compat}}
 
 ## 関連情報
 

@@ -41,7 +41,7 @@ Access-Control-Allow-Headers: *
 ### カスタムヘッダー
 
 `Access-Control-Allow-Headers` ヘッダーがどのように見えるかの例です。
-これは、{{Glossary("CORS-safelisted_request_header", "CORS セーフリストリクエストヘッダー")}}に加えて、サーバーへの CORS リクエストにおいて `X-Custom-Header` という独自のヘッダーが対応していることを示しています。
+これは、{{Glossary("CORS-safelisted_request_header", "CORS セーフリストリクエストヘッダー")}}に加えて、サーバーへの CORS リクエストで `X-Custom-Header` という独自ヘッダーが使用できることを示しています。
 
 ```http
 Access-Control-Allow-Headers: X-Custom-Header
@@ -49,7 +49,7 @@ Access-Control-Allow-Headers: X-Custom-Header
 
 ### 複数のヘッダー
 
-この例は、複数のヘッダーへの対応を指定するときの `Access-Control-Allow-Headers` を示しています。
+この例は、複数のヘッダーを許可する場合の `Access-Control-Allow-Headers` を示しています。
 
 ```http
 Access-Control-Allow-Headers: X-Custom-Header, Upgrade-Insecure-Requests
@@ -94,7 +94,7 @@ Access-Control-Allow-Headers: Content-Type, x-requested-with
 Access-Control-Max-Age: 86400
 ```
 
-要求されたメソッドに対応していない場合は、サーバーはエラーを返します。
+リクエストされたメソッドに対応していない場合、サーバーはエラーを返します。
 
 ## 仕様書
 

@@ -12,7 +12,7 @@ l10n:
 
 ### Firefox
 
-`Content Security Policy: The pages settings blocked the loading of a resource: xyz`
+`Content Security Policy: The page's settings blocked the loading of a resource: xyz`
 
 ここで、
 

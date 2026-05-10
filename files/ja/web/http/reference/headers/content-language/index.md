@@ -4,18 +4,18 @@ slug: Web/HTTP/Reference/Headers/Content-Language
 original_slug: Web/HTTP/Headers/Content-Language
 ---
 
-**`Content-Language`** は {{Glossary("entity header", "エンティティヘッダー")}} で、ユーザが自分の好みの言語に応じて区別できるように、オーディエンス向けの言語を記述するために使用されます。
+**`Content-Language`** は {{Glossary("representation header", "表現ヘッダー")}} で、ユーザーが自分の言語設定に応じて区別できるように、想定するオーディエンスの言語を示すために使用されます。
 
-たとえば、"`Content-Language: de-DE`" が設定されている場合、その文書はドイツ語のスピーカーを対象としてます (ただし、文書がドイツ語で記述されていることを示すわけではありません。 たとえば、ドイツ語スピーカーのための語学コースの一部としての英語が書かれているかもしれません。文書が記述されている言語を示す場合は、代わりに [`lang` 属性](/ja/docs/Web/HTML/Reference/Global_attributes/lang)を使用します)。
+たとえば、`Content-Language: de-DE` が設定されている場合、その文書はドイツ語話者を対象としていることを示します。これは文書がドイツ語で書かれていることを意味するわけではありません。たとえば、ドイツ語話者向けの語学コース教材であれば、文書は英語で書かれている場合があります。文書が実際に書かれている言語を示すには、代わりに [`lang` 属性](/ja/docs/Web/HTML/Reference/Global_attributes/lang)を使用します。
 
-`Content-Language` が指定されていない場合、既定ではコンテンツがすべての言語のオーディエンスを対象としています。`Content-Language` ヘッダーをテキスト形式の文書やさまざまな種類のメディアに適用するだけでなく、複数の言語タグを使用することもできます。
+`Content-Language` が指定されていない場合、既定ではコンテンツはすべての言語オーディエンスを対象とします。`Content-Language` ヘッダーはテキスト文書だけでなく、さまざまな種類のメディアに適用できます。また、複数の言語タグを指定することもできます。
 
 <table class="properties">
   <tbody>
     <tr>
       <th scope="row">ヘッダー種別</th>
       <td>
-        {{Glossary("Entity header", "エンティティヘッダー")}}
+        {{Glossary("Representation header", "表現ヘッダー")}}
       </td>
     </tr>
     <tr>
@@ -34,13 +34,12 @@ original_slug: Web/HTTP/Headers/Content-Language
       <th scope="row">
         {{Glossary("CORS-safelisted request header", "CORS セーフリストリクエストヘッダー")}}
       </th>
-      <td>
-        はい、値を <code>0-9</code>, <code>A-Z</code>, <code>a-z</code>, 空白、
-        <code>*,-.;=</code> のみに限定するという追加の制限があります。
-      </td>
+      <td>はい*</td>
     </tr>
   </tbody>
 </table>
+
+\* 値には <code>0-9</code>, <code>A-Z</code>, <code>a-z</code>, 空白、<code>*,-.;=</code> のみを使用できます。
 
 ## 構文
 

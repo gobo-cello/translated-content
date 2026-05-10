@@ -85,7 +85,7 @@ Content-Security-Policy: <policy-directive>; <policy-directive>
 - {{CSP("worker-src")}}
   - : {{domxref("Worker")}}、{{domxref("SharedWorker")}}、{{domxref("ServiceWorker")}} スクリプトのための有効なソースを指定します。
 
-すべてのフェッチディレクティブには、単一の値として'none' を指定することができ、これは特定のリソースタイプを完全にブロックすることを意味します。または、1つ以上のソース表現値として指定することができ、これはそのリソースタイプの有効なソースを意味します。詳細は、[フェッチディレクティブの構文](#フェッチディレクティブの構文)を参照してください。
+すべてのフェッチディレクティブには、単一値の `'none'`、または 1 つ以上のソース式を指定できます。`'none'` は対象のリソース種別を完全にブロックし、ソース式はそのリソース種別で許可される取得元を示します。詳しくは、[フェッチディレクティブの構文](#フェッチディレクティブの構文)を参照してください。
 
 #### 代替
 
@@ -342,7 +342,7 @@ script-src 'unsafe-hashes' 'sha256-cd9827ad...'
 
 ## ワーカー内の CSP
 
-[ワーカー](/ja/docs/Web/API/Worker)は、一般的に文書 (もしくは親ワーカー) のコンテンツセキュリティポリシーによって管理され*ません*。ワーカーに対してコンテンツセキュリティポリシーを指定するには、ワーカースクリプト自身が要求したリクエストに対して `Content-Security-Policy` レスポンスヘッダーを設定して下さい。
+[ワーカー](/ja/docs/Web/API/Worker)は、一般的に文書 (もしくは親ワーカー) のコンテンツセキュリティポリシーによって管理され*ません*。ワーカーに対してコンテンツセキュリティポリシーを指定するには、ワーカースクリプト自体を取得するリクエストのレスポンスに `Content-Security-Policy` ヘッダーを設定します。
 
 ワーカースクリプトのオリジンがグローバルで一意の識別子の場合（例えば、URL のスキームが data や blob の場合）は例外です。この場合、ワーカーは文書もしくは作成元のワーカーのコンテンツセキュリティポリシーを継承します。
 
@@ -350,7 +350,7 @@ script-src 'unsafe-hashes' 'sha256-cd9827ad...'
 
 CSP の機構では、`Content-Security-Policy` ヘッダー、{{HTTPHeader("Content-Security-Policy-Report-Only")}} ヘッダーや {{HTMLElement("meta")}} 要素を経由したものを含む、リソースに対して複数のポリシーを指定することができます。
 
-以下の例のように、 `Content-Security-Policy` ヘッダーを複数回使うことができます。ここでは {{CSP("connect-src")}} ディレクティブに特に注意してください。 2 つ目のポリシーでは接続を許可しているにもかかわらず、 1 つ目のポリシーには `connect-src 'none'` が含まれています。追加のポリシーを追加しても、保護されたリソースの機能がさらに制限することができるだけで、接続は許可されず、最も厳密なポリシーとして `connect-src 'none'` が強制されます。
+以下の例のように、`Content-Security-Policy` ヘッダーは複数回指定できます。ここでは {{CSP("connect-src")}} ディレクティブに注目してください。2 つ目のポリシーでは接続を許可していますが、1 つ目のポリシーには `connect-src 'none'` が含まれています。ポリシーを追加しても、保護対象リソースの権限はさらに制限されるだけです。そのため接続は許可されず、より厳しい `connect-src 'none'` が適用されます。
 
 ```http
 Content-Security-Policy: default-src 'self' http://example.com;
@@ -401,7 +401,7 @@ CSP ポリシーでは、 {{CSP("report-to")}} ディレクティブを使用し
 Content-Security-Policy-Report-Only: default-src https:; report-uri /csp-violation-report-url/; report-to csp-endpoint
 ```
 
-{{CSP("report-uri")}} {{deprecated_inline}} ディレクティブも上記で指定されていることに注意してください。 `report-to` はまだ広くブラウザーが対応していないためです。
+{{CSP("report-uri")}} {{deprecated_inline}} ディレクティブも上記で指定されていることに注意してください。`report-to` は、ブラウザーでの対応がまだ十分に広くないためです。
 
 その他の例は、[Content Security Policy (CSP) の実装](/ja/docs/Web/Security/Practical_implementation_guides/CSP) を参照して下さい。
 

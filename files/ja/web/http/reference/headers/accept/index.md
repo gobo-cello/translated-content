@@ -6,7 +6,7 @@ l10n:
   sourceCommit: ad5b5e31f81795d692e66dadb7818ba8b220ad15
 ---
 
-HTTP の **`Accept`** {{Glossary("request header", "リクエスト")}}および{{Glossary("response header", "レスポンスヘッダー")}}は、送信者が理解できるコンテンツ型（[MIME タイプ](/ja/docs/Web/HTTP/Guides/MIME_types)で表現）を示します。リクエストでは、サーバーは[コンテンツネゴシエーション](/ja/docs/Web/HTTP/Guides/Content_negotiation)を使用して提案の中から 1 つを選択し、 {{HTTPHeader("Content-Type")}} レスポンスヘッダーでその選択をクライアントに通知します。
+HTTP の **`Accept`** {{Glossary("request header", "リクエストヘッダー")}}および{{Glossary("response header", "レスポンスヘッダー")}}は、送信者が理解できるコンテンツ型（[MIME タイプ](/ja/docs/Web/HTTP/Guides/MIME_types)で表現）を示します。リクエストでは、サーバーは[コンテンツネゴシエーション](/ja/docs/Web/HTTP/Guides/Content_negotiation)を使用して提案の中から 1 つを選択し、 {{HTTPHeader("Content-Type")}} レスポンスヘッダーでその選択をクライアントに通知します。
 レスポンスでは、リクエストされたリソースへのメッセージにおいて、サーバーが理解できるコンテンツ型に関する情報を指定します。これにより、そのコンテンツ型をリソースへの後続のリクエストで使用することができます。
 
 ブラウザーは、リクエストのコンテキストに基づいてこのヘッダーに要求される値を設定します。
@@ -63,7 +63,7 @@ Accept: text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*
 
 ### デフォルトの Accept リクエストヘッダーの使用
 
-コマンドラインツール、例えば [curl](https://curl.se/) や [wget](https://www.gnu.org/software/wget/)）で発行される HTTP リクエストでは、`Accept` ヘッダーのデフォルト値として `*/*` が使用されます。
+コマンドラインツール、例えば [curl](https://curl.se/) や [wget](https://www.gnu.org/software/wget/) で発行される HTTP リクエストでは、`Accept` ヘッダーのデフォルト値として `*/*` が使用されます。
 
 ```http
 GET / HTTP/1.1
@@ -81,7 +81,7 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 …
 ```
 
-文書を送信すると、`developer.mozilla.org` の画像リクエストにおけるデフォルトの `Accept` 値は同様に次のようになります。
+文書を受信した後、`developer.mozilla.org` の画像リクエストにおけるデフォルトの `Accept` 値は次のようになります。
 
 ```http
 Accept: image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5

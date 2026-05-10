@@ -4,9 +4,9 @@ slug: Web/HTTP/Reference/Headers/Content-Language
 original_slug: Web/HTTP/Headers/Content-Language
 ---
 
-**`Content-Language`** は {{Glossary("entity header", "エンティティヘッダー")}} で、ユーザが自分の好みの言語に応じて区別できるように、オーディエンス向けの言語を記述するために使用されます。
+**`Content-Language`** は {{Glossary("representation header", "表現ヘッダー")}} で、ユーザが自分の好みの言語に応じて区別できるように、オーディエンス向けの言語を記述するために使用されます。
 
-たとえば、"`Content-Language: de-DE`" が設定されている場合、その文書はドイツ語のスピーカーを対象としてます (ただし、文書がドイツ語で記述されていることを示すわけではありません。 たとえば、ドイツ語スピーカーのための語学コースの一部としての英語が書かれているかもしれません。文書が記述されている言語を示す場合は、代わりに [`lang` 属性](/ja/docs/Web/HTML/Reference/Global_attributes/lang)を使用します)。
+たとえば、"`Content-Language: de-DE`" が設定されている場合、その文書はドイツ語のスピーカーを対象としています (ただし、文書がドイツ語で記述されていることを示すわけではありません。 たとえば、ドイツ語スピーカーのための語学コースの一部としての英語が書かれているかもしれません。文書が記述されている言語を示す場合は、代わりに [`lang` 属性](/ja/docs/Web/HTML/Reference/Global_attributes/lang)を使用します)。
 
 `Content-Language` が指定されていない場合、既定ではコンテンツがすべての言語のオーディエンスを対象としています。`Content-Language` ヘッダーをテキスト形式の文書やさまざまな種類のメディアに適用するだけでなく、複数の言語タグを使用することもできます。
 
@@ -15,7 +15,7 @@ original_slug: Web/HTTP/Headers/Content-Language
     <tr>
       <th scope="row">ヘッダー種別</th>
       <td>
-        {{Glossary("Entity header", "エンティティヘッダー")}}
+        {{Glossary("Representation header", "表現ヘッダー")}}
       </td>
     </tr>
     <tr>

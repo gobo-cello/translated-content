@@ -50,13 +50,13 @@ Sec-Fetch-Mode: websocket
 - `cors`
   - : このリクエストは [CORS プロトコル](/ja/docs/Web/HTTP/Guides/CORS)のリクエストです。
 - `navigate`
-  - : このリクエストは、 HTML 文書館のナビゲーションで開始されています。
+  - : このリクエストは、 HTML 文書間のナビゲーションで開始されています。
 - `no-cors`
-  - : このリクエストは CORS リクエストではありません（[`Request.mode`](/ja/docs/Web/API/Request/mode#value) を参照）。
+  - : このリクエストは `no-cors` リクエストです（[`Request.mode`](/ja/docs/Web/API/Request/mode#value) を参照）。
 - `same-origin`
   - : このリクエストは、リクエストされたリソースと同じオリジンから行われています。
 - `websocket`
-  - : [WebSocket](/ja/docs/Web/API/WebSockets_API) 接続を確立するためのリクエストが行われています。
+  - : このリクエストは [WebSocket](/ja/docs/Web/API/WebSockets_API) 接続を確立するためのものです。
 
 ## 例
 
@@ -71,7 +71,7 @@ Sec-Fetch-Site: same-origin
 Sec-Fetch-User: ?1
 ```
 
-{{HTMLElement("img")}} 要素によって生成されるクロスサイトリクエストは、次の HTTP リクエストヘッダーをつけてリクエストされます（モードが `no-cors` であることに注意してください）。
+{{HTMLElement("img")}} 要素によって生成されるクロスサイトリクエストには、次の HTTP リクエストヘッダーが含まれます（モードが `no-cors` であることに注意してください）。
 
 ```http
 Sec-Fetch-Dest: image

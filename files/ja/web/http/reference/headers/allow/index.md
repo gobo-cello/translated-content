@@ -13,7 +13,7 @@ original_slug: Web/HTTP/Headers/Allow
     <tr>
       <th scope="row">ヘッダー種別</th>
       <td>
-        {{Glossary("Entity header", "エンティティヘッダー")}}
+        {{Glossary("Response header", "レスポンスヘッダー")}}
       </td>
     </tr>
     <tr>

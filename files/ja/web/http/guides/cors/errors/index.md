@@ -2,7 +2,7 @@
 title: CORS のエラー
 slug: Web/HTTP/Guides/CORS/Errors
 l10n:
-  sourceCommit: 06e6e54baef7032c4e81ca93291fde0a0585de8b
+  sourceCommit: 92396cf8979e107c3ac42c2b9fc382013ea1c234
 ---
 
 [オリジン間リソース共有](/ja/docs/Web/HTTP/Guides/CORS) (Cross-Origin Resource Sharing) ({{Glossary("CORS")}}) は、サーバーが[同一オリジンポリシー](/ja/docs/Web/Security/Defenses/Same-origin_policy)を緩和することができる標準規格です。例えば、サイトが埋め込み可能なサービスを提供する場合、このような制約を緩和する必要があるかもしれません。このような CORS の構成の設定は必ずしも簡単ではなく、いくらか冒険的です。これらのページでは、よくある CORS のエラーメッセージと解決方法を調査します。
@@ -48,6 +48,36 @@ Firefox のコンソールは、 CORS のためにリクエストが失敗した
 - [Reason: invalid token 'xyz' in CORS header 'Access-Control-Allow-Headers'](/ja/docs/Web/HTTP/Guides/CORS/Errors/CORSInvalidAllowHeader)
 - [Reason: missing token 'xyz' in CORS header 'Access-Control-Allow-Headers' from CORS preflight channel](/ja/docs/Web/HTTP/Guides/CORS/Errors/CORSMissingAllowHeaderFromPreflight)
 - [Reason: Multiple CORS header 'Access-Control-Allow-Origin' not allowed](/ja/docs/Web/HTTP/Guides/CORS/Errors/CORSMultipleAllowOriginNotAllowed)
+
+## クライアント側でできること
+
+多くの CORS エラーは、オリジン間アクセスを許可するかどうかを制御するサーバー側で解決する必要があります。一方で、クライアント側でも状況によっては次の対策を行えます。
+
+### プリフライトの発生を避ける
+
+サーバーがプリフライトリクエストに対応していない場合は、リクエストを単純リクエストの条件に寄せることで回避できることがあります。
+
+- メソッドを `GET`、`HEAD`、`POST` に限定する。
+- 設定するヘッダーを [CORS セーフリストリクエストヘッダー](/ja/docs/Glossary/CORS-safelisted_request_header) に限定する。
+- {{HTTPHeader("Content-Type")}} は `application/x-www-form-urlencoded`、`multipart/form-data`、`text/plain` を使用する。
+
+### `no-cors` モードを使う（opaque レスポンス）
+
+レスポンス本文やヘッダーを JavaScript から読む必要がない場合は、 [`fetch()`](/ja/docs/Web/API/Window/fetch) の [`mode`](/ja/docs/Web/API/Request/mode) に `"no-cors"` を指定できます。
+
+```js
+fetch("https://api.example.com/log", {
+  method: "POST",
+  mode: "no-cors",
+  body: data,
+});
+```
+
+この場合のレスポンスは [`opaque`](/ja/docs/Web/API/Response/type) となり、ステータスは `0`、ヘッダーは空で、本文は JavaScript から読めません。
+
+### プロキシサーバーを使う
+
+アクセス先サーバーを制御できず CORS ヘッダーも設定されていない場合は、自分で管理するサーバーを経由してリクエストする方法があります。レイテンシーや運用負荷は増えますが、他の選択肢がない場合に有効です。
 
 ## 関連情報
 

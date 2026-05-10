@@ -6,26 +6,22 @@ l10n:
   sourceCommit: 36001a269f4d7b2b3ac6de79e942a5f849bb87d8
 ---
 
-**`Accept-Patch`** は HTTP のレスポンスヘッダーで、サーバーが認識できるメディアタイプを伝えます。
+**`Accept-Patch`** は HTTP の {{Glossary("response header", "レスポンスヘッダー")}} で、サーバーが {{HTTPMethod("PATCH")}} リクエストで解釈できる[メディアタイプ](/ja/docs/Web/HTTP/Guides/MIME_types)を示します。
 
-何らかのメソッドに対するレスポンスの **`Accept-Patch`** は、 Request-URI で特定されるリソースに対して PATCH が受け入れられることを意味しています。 2 つのよくあるケースがこれをもたらします。
+例えば、サポートされていないメディアタイプの `PATCH` リクエストを受信したサーバーは、{{HTTPStatus("415", "415 Unsupported Media Type")}} と、1 つ以上のサポート済みメディアタイプを列挙した `Accept-Patch` ヘッダーを返すことができます。
 
-サポートされていないメディアタイプの PATCH リクエストを受信したサーバーは、{{HTTPStatus("415")}} `Unsupported Media Type`と、 1 つ以上のサポートされているメディアタイプを参照する Accept-Patch ヘッダーで応答する可能性があります。
+このヘッダーは、`PATCH` メソッドに対応したリソースへの {{HTTPMethod("OPTIONS")}} リクエストで示されるべきです。また、任意のリクエストメソッドへのレスポンスに `Accept-Patch` が含まれている場合は、対象リソースで `PATCH` が許可されていることを暗黙的に意味します。
 
 > [!NOTE]
 >
 > - IANA レジストリーが[公式なコンテンツエンコーディングの完全なリスト](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-parameters-1)を管理しています。
-> - 他にも `bzip` および `bzip2` の 2 種類のエンコーディングが使用されることがありますが、標準ではありません。これはこれら 2 つの UNIX プログラムで使用されているアルゴリズムを実装しています。なお、前者は特許ライセンスの問題で開発終了しています。
+> - `bzip` および `bzip2` エンコーディングは標準ではありませんが、特に過去の実装に対応するために使用されることがあります。
 
 <table class="properties">
   <tbody>
     <tr>
       <th scope="row">ヘッダー種別</th>
-      <td>{{Glossary("Request header", "リクエストヘッダー")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">{{Glossary("Forbidden request header", "禁止リクエストヘッダー")}}</th>
-      <td>はい</td>
+      <td>{{Glossary("Response header", "レスポンスヘッダー")}}</td>
     </tr>
   </tbody>
 </table>
@@ -33,23 +29,30 @@ l10n:
 ## 構文
 
 ```http
-Accept-Patch: application/example, text/example
-Accept-Patch: text/example;charset=utf-8
-Accept-Patch: application/merge-patch+json
+Accept-Patch: <media-type>/<subtype>
+Accept-Patch: <media-type>/*
+Accept-Patch: */*
+
+// カンマ区切りのメディアタイプ一覧
+Accept-Patch: <media-type>/<subtype>, <media-type>/<subtype>
 ```
 
 ## ディレクティブ
 
-なし
+- `<media-type>/<subtype>`
+  - : `text/html` のような単一で明確な [MIME タイプ](/ja/docs/Web/HTTP/Guides/MIME_types)です。
+- `<media-type>/*`
+  - : サブタイプを省略した MIME タイプです。
+    例えば、`image/*` は `image/png`、`image/svg`、`image/gif` などの画像タイプに対応します。
+- `*/*`
+  - : 任意のメディアタイプです。
 
 ## 例
 
 ```http
-Accept-Patch: application/example, text/example
-
-Accept-Patch: text/example;charset=utf-8
-
-Accept-Patch: application/merge-patch+json
+Accept-Patch: application/json
+Accept-Patch: application/json, text/plain
+Accept-Patch: text/plain;charset=utf-8
 ```
 
 ## 仕様書
@@ -62,5 +65,6 @@ Accept-Patch: application/merge-patch+json
 
 ## 関連情報
 
-- HTTP メソッド {{HTTPMethod("PATCH")}}
-- HTTP Semantic and context {{RFC("7231", "PUT", "4.3.4")}}
+- {{HTTPHeader("Accept-Post")}}
+- {{HTTPStatus("415", "415 Unsupported Media Type")}}
+- {{HTTPMethod("PATCH")}} リクエストメソッド

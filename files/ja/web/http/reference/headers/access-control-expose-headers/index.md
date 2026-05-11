@@ -4,7 +4,7 @@ slug: Web/HTTP/Reference/Headers/Access-Control-Expose-Headers
 original_slug: Web/HTTP/Headers/Access-Control-Expose-Headers
 ---
 
-**`Access-Control-Expose-Headers`** レスポンスヘッダーは、レスポンスの一部としてどのヘッダーを公開するかを、その名前を列挙して示します。
+HTTP の **`Access-Control-Expose-Headers`** {{Glossary("response header", "レスポンスヘッダー")}} は、オリジン間リクエストへのレスポンスとして、ブラウザー内で実行されるスクリプトにどのレスポンスヘッダーを公開するかをサーバーが示すために使用します。
 
 既定では、公開される {{Glossary("CORS-safelisted response header", "CORS セーフリストレスポンスヘッダー")}}は 7 つだけです。
 
@@ -37,43 +37,39 @@ original_slug: Web/HTTP/Headers/Access-Control-Expose-Headers
 
 ## 構文
 
-```
-Access-Control-Expose-Headers: <header-name>, <header-name>, ...
+```http
+Access-Control-Expose-Headers: [<header-name>[, <header-name>]*]
 Access-Control-Expose-Headers: *
 ```
 
 ## ディレクティブ
 
 - \<header-name>
-  - : ゼロ個以上の[ヘッダー名](/ja/docs/Web/HTTP/Reference/Headers)の一覧で、 {{Glossary("CORS-safelisted response header", "CORS セーフリストレスポンスヘッダー")}}に含まれないものであり、リソースが使用する可能性があり、公開される可能性があるものです。
+  - : クライアントがレスポンスからアクセス可能になる、ゼロ個以上のカンマ区切りの[ヘッダー名](/ja/docs/Web/HTTP/Reference/Headers)です。
+    これらは {{Glossary("CORS-safelisted response header", "CORS セーフリストレスポンスヘッダー")}}に追加して公開されます。
 - `*` (ワイルドカード)
-  - : "`*`" の値は、資格情報のないリクエスト ([HTTP Cookie](/ja/docs/Web/HTTP/Guides/Cookies) や HTTP の資格情報のないリクエスト) の特殊なワイルドカード値です。資格情報付きのリクエストでは、特別な意味のない "`*`" というヘッダー名として扱われます。
-    なお、 {{HTTPHeader("Authorization")}} ヘッダーはワイルドカードで表すことができず、常に明示的に列挙する必要があります。
+  - : あらゆるヘッダーを示します。
+    `*` の値は、資格情報のないリクエスト（[HTTP Cookie](/ja/docs/Web/HTTP/Guides/Cookies) や HTTP 認証情報を含まないリクエスト）でのみ、特別なワイルドカード値として扱われます。
+    資格情報付きのリクエストでは、リテラルなヘッダー名 `*` として扱われます。
 
 ## 例
 
 CORS セーフリストにないレスポンスヘッダーを公開するには、次のように指定します。
 
-```
-Access-Control-Expose-Headers: Content-Length
+```http
+Access-Control-Expose-Headers: Content-Encoding
 ```
 
-`X-Kuma-Revision` のようなカスタムヘッダーをさらに公開するには、複数のヘッダーをカンマで区切って指定することができます。
+`Kuma-Revision` のようなカスタムヘッダーをさらに公開するには、複数のヘッダーをカンマで区切って指定できます。
 
-```
-Access-Control-Expose-Headers: Content-Length, X-Kuma-Revision
+```http
+Access-Control-Expose-Headers: Content-Encoding, Kuma-Revision
 ```
 
 資格情報のないリクエストでは、ワイルドカード値を使うこともできます。
 
-```
+```http
 Access-Control-Expose-Headers: *
-```
-
-但し、 {{HTTPHeader("Authorization")}} ヘッダーはワイルドカードの対象にならないので、明示的に列挙する必要があります。
-
-```
-Access-Control-Expose-Headers: *, Authorization
 ```
 
 ## 仕様書

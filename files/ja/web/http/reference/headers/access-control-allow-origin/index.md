@@ -6,17 +6,13 @@ l10n:
   sourceCommit: ad5b5e31f81795d692e66dadb7818ba8b220ad15
 ---
 
-**`Access-Control-Allow-Origin`** は{{Glossary("response header", "レスポンスヘッダー")}}で、指定された{{Glossary("origin", "オリジン")}}からのリクエストを行うコードでレスポンスが共有できるかどうかを示します。
+HTTP の **`Access-Control-Allow-Origin`** {{Glossary("response header", "レスポンスヘッダー")}} は、指定された{{Glossary("origin", "オリジン")}}からのリクエスト元コードとレスポンスを共有できるかどうかを示します。
 
 <table class="properties">
   <tbody>
     <tr>
       <th scope="row">ヘッダー種別</th>
       <td>{{Glossary("Response header", "レスポンスヘッダー")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">{{Glossary("Forbidden request header", "禁止リクエストヘッダー")}}</th>
-      <td>いいえ</td>
     </tr>
   </tbody>
 </table>
@@ -34,7 +30,7 @@ Access-Control-Allow-Origin: null
 - `*`（ワイルドカード）
   - : 任意のオリジンからのリクエストコードがこのリソースにアクセスすることができます。
     資格情報がないリクエストでは、リテラル値 `*` をワイルドカードとして指定することができます。
-    資格情報がある時にワイルドカードを使用すると、[エラーを返します](/ja/docs/Web/HTTP/Guides/CORS/Errors/CORSNotSupportingCredentials)。
+    資格情報がある場合にワイルドカードを使用すると、[エラーになります](/ja/docs/Web/HTTP/Guides/CORS/Errors/CORSNotSupportingCredentials)。
 - `<origin>`
   - : 単一のオリジンを指定します。サーバーが複数のオリジンからのクライアントに対応している場合、リクエストを行った特定のクライアントのオリジンを返さなければなりません。
 - `null`

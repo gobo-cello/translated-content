@@ -6,21 +6,13 @@ l10n:
   sourceCommit: ad5b5e31f81795d692e66dadb7818ba8b220ad15
 ---
 
-**`Access-Control-Allow-Methods`** レスポンスヘッダーは、{{glossary("preflight request", "プリフライトリクエスト")}}のレスポンスの中で、リソースにアクセスするときに利用できる 1 つまたは複数のメソッドを指定します。
+HTTP の **`Access-Control-Allow-Methods`** {{Glossary("response header", "レスポンスヘッダー")}} は、{{glossary("preflight request", "プリフライトリクエスト")}}へのレスポンスにおいて、リソースへのアクセス時に許可される 1 つ以上の[HTTP リクエストメソッド](/ja/docs/Web/HTTP/Reference/Methods)を指定します。
 
 <table class="properties">
   <tbody>
     <tr>
       <th scope="row">ヘッダー種別</th>
-      <td>
-        {{Glossary("Response header", "レスポンスヘッダー")}}
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        {{Glossary("Forbidden request header", "禁止リクエストヘッダー")}}
-      </th>
-      <td>いいえ</td>
+      <td>{{Glossary("Response header", "レスポンスヘッダー")}}</td>
     </tr>
   </tbody>
 </table>
@@ -43,7 +35,7 @@ Access-Control-Allow-Methods: *
 ## 例
 
 ```
-Access-Control-Allow-Methods: POST, DELETE
+Access-Control-Allow-Methods: PUT, DELETE
 Access-Control-Allow-Methods: *
 ```
 
